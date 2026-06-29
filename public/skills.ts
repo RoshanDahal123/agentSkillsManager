@@ -26,11 +26,16 @@ export let SKILLS:Skill[] =[
 ]
 
 export async function getSkill(){
+    await new Promise((resolve)=>setTimeout((()=>{
+        resolve(null)
+    }),3000));
     return [...SKILLS]
 }
 
 export async function addSkill(skill:Skill){
-    await new Promise((resolve)=>setTimeout(resolve,3000));
+    await new Promise((resolve)=>setTimeout((()=>{
+        resolve(null)
+    }),3000));
     SKILLS=[...SKILLS,skill]
     console.log("Skill added successfully",skill);
 }

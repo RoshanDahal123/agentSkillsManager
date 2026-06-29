@@ -1,6 +1,6 @@
 'use server'
 
-import { addSkill } from "@/public/skills";
+import { addSkill, Skill } from "@/public/skills";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
