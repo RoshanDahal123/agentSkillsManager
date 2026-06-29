@@ -1,27 +1,33 @@
-import { getSkill } from '@/public/skills';
-import Link from 'next/link'
 
-export const revalidate = 60; //Revalidate this page every 60 seconds
+import SkillsList from "@/components/SkillsList";
+import { getSkill } from "@/public/skills";
+import Link from "next/link";
 
- const SkillsPage = async() => {
-  //  const skills= await prisma.skill.findMany({where:{isPublic:true}});
-  //  return <SkillsGrid skills={skills}/>
-  const skills= await getSkill();
+// export const revalidate = 60; //Revalidate this page every 60 seconds
+
+
+export default async function SkillsSection() {
+  
+  const skills = await getSkill();
+  
+
   return (
-    <section>
-      <h1>Skills</h1>
-      <Link href='/skills/create'> Create Skills</Link>
-      <ul>
-        {skills &&
-          skills.map((skill) => (
-            <li key={skill.id}>
-              <Link href={`/skills/${skill.id}`}>{skill.name}</Link>
-            </li>
-          ))}
-      </ul>
+    <section className="mx-auto w-full max-w-md p-4">
+      {/* Animated Header */}
 
+      <div className='mb-4 flex flex-col gap-1'>
+        <h1 className="text-2xl font-bold tracking-tight text-base-content">
+          Skills
+        </h1>
+        <p className="text-xs text-base-content/60">
+          Manage your professional skills
+        </p>
+      </div>
+      <Link href="/skills/create" className="btn btn-primary btn-sm sm:btn-md mb-4">
+        Create Skill
+      </Link>
 
-    </section>)
+      <SkillsList skills={skills} />
+    </section>
+  );
 }
-
-export default SkillsPage

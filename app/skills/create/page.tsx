@@ -14,9 +14,9 @@ export default function NewSkillPage() {
   );
 
   return (
-    <form action={formAction}>
+    <form action={formAction} className="w-full max-w-md mx-auto space-y-4 mt-4 flex flex-col ">
       <input name="name" className="input input-bordered w-full" />
-      <textarea name="description" className="input input-bordered w-full" />
+      <textarea name="description" className="input text-bordered w-full p-2" />
       <input name="category" className="input input-bordered w-full" />
      
       <p aria-live="polite" className="text-red-500">

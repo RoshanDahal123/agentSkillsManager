@@ -12,6 +12,7 @@ const description = formData.get('description') as string;
 const category = formData.get('category') as string;
 
 if(!name || !description || !category){
+    throw new Error("Please fill all the required fields")
     return {message:"Please fill all the required fields", status:400}
 }
     
