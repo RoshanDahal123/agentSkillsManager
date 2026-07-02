@@ -1,6 +1,6 @@
 'use client';
 
-import { Skill } from "@/public/skills";
+import { Skill } from "@/__lib/skills";
 import { motion } from "framer-motion";
 import Link from "next/link";
 export default function SkillsList({ skills }: { skills: Skill[] }) {

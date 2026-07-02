@@ -2,8 +2,7 @@
 import SkillsList from "@/components/SkillsList";
 import { getSkill } from "@/public/skills";
 import Link from "next/link";
-
-// export const revalidate = 60; //Revalidate this page every 60 seconds
+export const revalidate = 60; //Revalidate this page every 60 seconds
 
 
 export default async function SkillsSection() {

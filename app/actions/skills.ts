@@ -31,5 +31,4 @@ const newSkill={
 await addSkill(newSkill);
 revalidatePath('/skills');
 redirect('/skills');
-
 }
