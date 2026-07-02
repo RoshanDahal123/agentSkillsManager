@@ -10,7 +10,6 @@ export interface TokenPayload{
     userId:number;
     email:string;
     name: string;
-    exp: number;
 }
 
 //Hash password using bcrypt
@@ -52,7 +51,7 @@ export function verifyToken(token:string):Promise<TokenPayload |null>{
       return decoded ? Promise.resolve(decoded) : Promise.resolve(null);
 }
 
-export  function setAuthCookie(response: NextResponse,token:string):void{
+export function setAuthCookie(response: NextResponse,token:string):void{
 response.cookies.set(AUTH_COOKIE_NAME,token,{
     httpOnly:true,
     secure:process.env.NODE_ENV === "production",
