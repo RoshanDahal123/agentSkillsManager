@@ -1,3 +1,4 @@
+import { useAuth } from "@/hooks/useAuth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -5,7 +6,7 @@ import { useState } from "react";
 const Login = () => {
 
   const router= useRouter();
-  const {register, isAuthenticated, login}=useAuth();
+  const {register, isAuthenticated, login,isLoading}=useAuth();
   
 
     const [isSubmitting,setIsSubmitting]=useState(false);
