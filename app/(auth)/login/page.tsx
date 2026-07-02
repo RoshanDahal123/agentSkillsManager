@@ -1,19 +1,20 @@
+'use client'
+
 import { useAuth } from "@/hooks/useAuth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const Login = () => {
-
+export default function Login(){
   const router= useRouter();
-  const {register, isAuthenticated, login,isLoading}=useAuth();
+  const {login, isAuthenticated,isLoading}=useAuth();
   
 
     const [isSubmitting,setIsSubmitting]=useState(false);
-  const [name, setName] = useState("");
+ 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  
     //Redirect if already authenticated
 
     if(!isLoading && isAuthenticated){
@@ -24,11 +25,7 @@ const Login = () => {
     const handleSubmit= async(e: React.FormEvent<HTMLFormElement>)=>{
       e.preventDefault();
       setError("");
-      
-      if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
+     
        if (password.length < 6) {
       setError("Password must be at least 6 characters");
       return;
@@ -37,11 +34,11 @@ const Login = () => {
 
 
     try{
-      await register({email,password,name});
+      await login({email,password});
       router.push('/dashboard');
     }
     catch(err:any){
-      setError(err instanceof Error ? err.message : "Registration failed");
+      setError(err instanceof Error ? err.message : "Login failed");
     }
     finally {
       setIsSubmitting(false);
@@ -65,19 +62,6 @@ const Login = () => {
 
         <div className="form-control">
           <label htmlFor="" className="label">
-            <span className="label-text">Name</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Your Name"
-            className="input input-bordered w-full"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-control mt-4">
-          <label className="label">
             <span className="label-text">Email</span>
           </label>
           <input
@@ -89,6 +73,8 @@ const Login = () => {
             required
           />
         </div>
+       
+        
         <div className="form-control mt-4">
           <label className="label">
             <span className="label-text">Password</span>
@@ -104,27 +90,15 @@ const Login = () => {
           />
         </div>
 
-        <div className="form-control mt-4">
-          <label className="label">
-            <span className="label-text">Confirm Password</span>
-          </label>
-          <input
-            type="password"
-            placeholder="••••••••"
-            className="input input-bordered w-full"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </div>
+        
 
-        <div className="form-control mt-6">
-          <button type="submit" className="btn btn-primary"
+        <div className="form-control mt-6 flex justify-center ">
+          <button type="submit" className="btn btn-primary w-full rounded-2xl"
           disabled={isSubmitting}>
              {isSubmitting ? (
               <span className="loading loading-spinner loading-sm"></span>
             ) : (
-              "Create Account"
+              "Login"
             )}
           </button>
         </div>
@@ -133,13 +107,10 @@ const Login = () => {
         <div className="divider">OR</div>
 
       <p className="text-center">
-        Already have an account?{" "}
-        <Link href="/login" className="link link-primary">
-          Sign in
+        Dont have an account?{" "}
+        <Link href="/register" className="link link-primary">
+          Sign up
         </Link>
       </p>
-    </>
-  );
-};
-
-export default Login;
+    </>)
+}
