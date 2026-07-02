@@ -1,5 +1,5 @@
 
-import { getSkill } from "@/__lib/skills";
+import { getSkill } from "@/__actions/skills";
 import { notFound } from "next/navigation";
 
 
